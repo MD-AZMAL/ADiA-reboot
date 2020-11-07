@@ -280,6 +280,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "regenerator-runtime": "^0.13.5",
+    "rsuite": "^4.8.4",
     "source-map-support": "^0.5.19"
   },
   "devEngines": {
@@ -320,10 +321,5 @@
     "baseBranches": [
       "next"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
