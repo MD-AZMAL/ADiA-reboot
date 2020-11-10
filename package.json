@@ -16,6 +16,8 @@
     "lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
     "lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
     "package": "yarn build && electron-builder build --publish never",
+    "package-debug": "yarn cross-env DLL_MOVED=FALSE DEBUG_PROD=true yarn package",
+    "start-debug": "yarn cross-env DLL_MOVED=FALSE DEBUG_PROD=true yarn start",
     "package-all": "yarn build && electron-builder build -mwl",
     "package-ci": "yarn postinstall && yarn build && electron-builder --publish always",
     "package-mac": "yarn build && electron-builder build --mac",
@@ -97,6 +99,12 @@
     "extraResources": [
       "./resources/**"
     ],
+    "extraFiles": [
+      {
+        "from": "./app/dll/",
+        "to": "resources/dll/"
+      }
+    ],
     "publish": {
       "provider": "github",
       "owner": "ADiA-reboot",
@@ -120,7 +128,7 @@
       "url": "https://github.com/md-azmal"
     }
   ],
-  "license": "Propreitory",
+  "license": "MIT",
   "bugs": {
     "url": "https://https://github.com/MD-AZMAL/ADiA-reboot/issues"
   },
@@ -187,6 +195,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/history": "^4.7.7",
     "@types/jest": "^26.0.10",
+    "@types/leaflet": "^1.5.19",
     "@types/node": "12",
     "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",
@@ -267,6 +276,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@hot-loader/react-dom": "^16.13.0",
     "@reduxjs/toolkit": "^1.4.0",
+    "@types/react-map-gl": "^5.2.9",
     "connected-react-router": "^6.6.1",
     "electron-debug": "^3.1.0",
     "electron-log": "^4.2.4",
@@ -275,11 +285,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.21",
+    "react-map-gl": "^5.2.10",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "regenerator-runtime": "^0.13.5",
+    "reselect": "^4.0.0",
     "rsuite": "^4.8.4",
     "source-map-support": "^0.5.19"
   },

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from 'rsuite'
 
-export const CustomButton = () => {
+export const CustomButton = (props) => {
     return (
-        <Button>Default</Button>
+        <Button {...props}>Default</Button>
     )
 }
