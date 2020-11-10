@@ -7,8 +7,8 @@ import webpack from 'webpack';
 import { dependencies as externals } from '../app/package.json';
 
 export default {
-  externals: [...Object.keys(externals || {})],
-
+  externals: [...Object.keys(externals || {})], // required to run mapbox .filter(x => x !== 'react-map-gl')
+//https://github.com/visgl/react-map-gl/issues/785#issuecomment-541580478
   module: {
     rules: [
       {

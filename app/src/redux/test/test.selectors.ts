@@ -1,9 +1,9 @@
 import { createSelector } from "reselect";
 
 
-const selectTest = state => state.test;
+const selectTest = (state: any) => state.test;
 
 export const selectTestValue = createSelector(
     [selectTest],
-    test => {return test.value;}
+    test => test.value
 );
