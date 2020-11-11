@@ -1,8 +1,10 @@
 import React from 'react';
 import { Dropdown, Icon, Nav, Sidebar, Sidenav } from 'rsuite';
 import { createStructuredSelector } from 'reselect';
-import { selectGcsExpanded } from '../../redux/gcs-sidebar/gcs-sidebar.selectors';
 import { connect } from 'react-redux';
+
+import { selectGcsExpanded } from '../../redux/gcs-sidebar/gcs-sidebar.selectors';
+import MapStyleDropdown from '../map-style-dropdown/map-style-dropdown.component';
 
 const GcsSidebar = ({expanded} : any) => {
   return (
@@ -16,17 +18,7 @@ const GcsSidebar = ({expanded} : any) => {
             <Nav.Item eventKey="2" icon={<Icon icon="group" />}>
                 User Group
               </Nav.Item>
-              <Dropdown
-                placement="rightStart"
-                eventKey="3"
-                title="Advanced"
-                icon={<Icon icon="magic" />}
-              >
-                <Dropdown.Item eventKey="3-1">Geo</Dropdown.Item>
-                <Dropdown.Item eventKey="3-2">Devices</Dropdown.Item>
-                <Dropdown.Item eventKey="3-3">Loyalty</Dropdown.Item>
-                <Dropdown.Item eventKey="3-4">Visit Depth</Dropdown.Item>
-              </Dropdown>
+              <MapStyleDropdown eventKey="3" />
               <Dropdown
                 placement="rightStart"
                 eventKey="4"
