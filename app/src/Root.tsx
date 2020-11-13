@@ -6,10 +6,6 @@ import './app.global.scss';
 import { testToggleValue } from './redux/test/test.actions';
 import GcsPage from './pages/gcs/gcs.page';
 
-
-
-
-
 const Root = ({setTestToggleValue} :{setTestToggleValue?: any}) => (
   <div>
     <GcsPage />

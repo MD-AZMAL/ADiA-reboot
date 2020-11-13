@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 
 import { store } from './src/redux/store';
 import './nativeImports';
-import 'mapbox-gl/dist/mapbox-gl.css';
 
 const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
 

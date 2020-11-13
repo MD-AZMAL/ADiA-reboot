@@ -16,6 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "ffi-napi": "^3.0.1",
-    "ref-napi": "^3.0.1"
+    "ref-napi": "^3.0.1",
+    "serialport": "^9.0.2",
+    "usb": "^1.6.3"
   }
 }

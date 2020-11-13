@@ -10,7 +10,7 @@ const GcsMap = ({expanded, mapStyle}: any) => {
   const [viewport, setViewport] = useState({
     latitude: 20.462521,
     longitude: 85.8829895,
-    zoom: 20, 
+    zoom: 13, 
   });
 
   return (
