@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { serialport } from '../../nativeImports';
 
 export const fcDevices = async () => {

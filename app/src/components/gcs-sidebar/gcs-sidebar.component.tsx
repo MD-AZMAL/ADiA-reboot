@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 import { selectGcsExpanded } from '../../redux/gcs-sidebar/gcs-sidebar.selectors';
 import MapStyleDropdown from '../map-style-dropdown/map-style-dropdown.component';
+import { gcsSidebarToggle } from '../../redux/gcs-sidebar/gcs-sidebar.actions';
 
-const GcsSidebar = ({expanded} : any) => {
+const GcsSidebar = ({expanded, gcsSidebarToggle} : any) => {
   return (
     <Sidebar width={expanded ? 260 : 56} style={{height: '100vh'}} collapsible>
       <Sidenav  expanded={expanded}>
@@ -19,20 +20,9 @@ const GcsSidebar = ({expanded} : any) => {
                 User Group
               </Nav.Item>
               <MapStyleDropdown eventKey="3" />
-              <Dropdown
-                placement="rightStart"
-                eventKey="4"
-                title="Settings"
-                icon={<Icon icon="gear-circle" />}
-              >
-                <Dropdown.Item eventKey="4-1">Applications</Dropdown.Item>
-                <Dropdown.Item eventKey="4-2">Channels</Dropdown.Item>
-                <Dropdown.Item eventKey="4-3">Versions</Dropdown.Item>
-                <Dropdown.Menu eventKey="4-5" title="Custom Action">
-                  <Dropdown.Item eventKey="4-5-1">Action Name</Dropdown.Item>
-                  <Dropdown.Item eventKey="4-5-2">Action Params</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+              <Nav.Item eventKey="5" icon={<Icon icon="group" />} onClick={gcsSidebarToggle}>
+                Close
+              </Nav.Item>
           </Nav>
         </Sidenav.Body>
       </Sidenav>
@@ -44,7 +34,11 @@ const mapStateToProps = createStructuredSelector({
     expanded: selectGcsExpanded
 });
 
-export default connect(mapStateToProps)(GcsSidebar);
+const mapDispatchToProps = (dispatch: any) => ({
+  gcsSidebarToggle: () => dispatch(gcsSidebarToggle())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(GcsSidebar);
 
 //backgroundColor:'cyan', 
 //style={{backgroundColor:'cyan'}}
