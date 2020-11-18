@@ -2,6 +2,7 @@ import React from 'react';
 import { Dropdown, Icon, Nav, Sidebar, Sidenav } from 'rsuite';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+// import TelemetryCard from '../telemetry-card/telemetry-card.component';
 
 import { selectGcsExpanded } from '../../redux/gcs-sidebar/gcs-sidebar.selectors';
 import MapStyleDropdown from '../map-style-dropdown/map-style-dropdown.component';
@@ -40,5 +41,5 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 export default connect(mapStateToProps,mapDispatchToProps)(GcsSidebar);
 
-//backgroundColor:'cyan', 
+//backgroundColor:'cyan',
 //style={{backgroundColor:'cyan'}}
