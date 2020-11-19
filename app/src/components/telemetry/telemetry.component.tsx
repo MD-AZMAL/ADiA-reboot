@@ -33,7 +33,7 @@ const Telemetry = ({
     };
 
     if (isSubscribedToIMU) {
-      setTelemetryInterval(setInterval(getIMU, 100));
+      setTelemetryInterval(setInterval(getIMU, 500));
     } else {
       clearInterval(telemetryInterval);
     }
@@ -42,11 +42,15 @@ const Telemetry = ({
       clearInterval(telemetryInterval);
     };
   }, [isSubscribedToIMU]);
-  
+
   return (
-    <div style={{ position: 'absolute', right: 15, bottom: 20 }}>
-      <AccelorometerCard />
-      <GyroscopeCard />
+    <div style={{ position: 'absolute', right: 15, top: 15 }}>
+      <div style={{marginBottom: '0.5rem'}}>
+        <AccelorometerCard />
+      </div>
+      <div>
+        <GyroscopeCard />
+      </div>
     </div>
   );
 };
