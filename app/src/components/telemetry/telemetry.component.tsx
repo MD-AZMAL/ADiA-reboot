@@ -44,7 +44,8 @@ const Telemetry = ({
   }, [isSubscribedToIMU]);
 
   return (
-    <div style={{ position: 'absolute', right: 15, top: 15 }}>
+    // style={{ position: 'absolute', right: 15, top: 15 }}
+    <div > 
       <div style={{marginBottom: '0.5rem'}}>
         <AccelorometerCard />
       </div>

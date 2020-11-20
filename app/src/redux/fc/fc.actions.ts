@@ -51,37 +51,65 @@ export const createFlightControllerProperty = () => {
     }
 };
 
-export const connectFc = (FC: any,port: string, boudRate: number) => {
-    return (dispatch: any) => {
-        try {
-            let res = flightLib.connectFlightController(FC,port,boudRate);
-            // console.log(`Connect Result : ${res}`);
-            dispatch(setFCIsConnected(res));
-        } catch(err) {
-            console.log(`Error in ConnectFC`);
+export const connectFc = (port: string, boudRate: number) => {
+    return (dispatch: any, getState: any) => {
+
+        dispatch(createFlightController());
+        
+        let FC = getState().fc.FC;
+        let connectResult = false;
+
+        if(FC != null) {
+            try {
+                connectResult = flightLib.connectFlightController(FC,port,boudRate);
+                dispatch(setFCIsConnected(connectResult));
+            } catch(err) {
+                console.log(`Error in ConnectFC`);
+            }
         }
     }
 };
 
-export const subscribeToIMU = (FC: any,FCP: any, frequency: number) => {
-    return (dispatch: any) => {
-        try {
-            flightLib.subscribeToIMU(FC,FCP,frequency);
-            dispatch(setFCIsSubscribedToIMU(true));
-        } catch(err) {
-            console.log(`Error in subscribeToIMU`);
+export const subscribeToIMU = (frequency: number) => {
+    return (dispatch: any, getState: any) => {
+        let isConnected = getState().fc.isConnected;
+
+        if(isConnected) {  
+            dispatch(createFlightControllerProperty());
+        
+            let FC = getState().fc.FC;
+            let FCP = getState().fc.FCP;
+
+            if(FC != null && FCP != null) {
+                try {
+                    flightLib.subscribeToIMU(FC,FCP,frequency);
+                    dispatch(setFCIsSubscribedToIMU(true));
+                } catch(err) {
+                    console.log(`Error in subscribeToIMU`);
+                }
+            }
         }
     }
 }
 
-export const disconnectFc = (FC: any) => {
-    return (dispatch: any) => {
-        try {
-            let res = flightLib.disconnectFlightController(FC);
-            dispatch(setFCIsConnected(!res));
-            dispatch(setFCIsSubscribedToIMU(false));
-        } catch(err) {
-            console.log(`Error in disconnect FC`);
+export const disconnectFc = (setTelemetryEmpty: any) => {
+    return (dispatch: any,getState: any) => {
+        let disconnectResult = false;
+        let FC = getState().fc.FC;
+
+        if(FC != null) {
+            try {
+                 disconnectResult = flightLib.disconnectFlightController(FC);
+                if(disconnectResult === true) {
+                    dispatch(setTelemetryEmpty());
+                    dispatch(setFCIsConnected(false));
+                    dispatch(setFCIsSubscribedToIMU(false));
+                    dispatch(setFCNull());
+                    dispatch(setFCPNull());
+                }
+            } catch(err) {
+                console.log(`Error in disconnect FC`);
+            }
         }
     }
 };

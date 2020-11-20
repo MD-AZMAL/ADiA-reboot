@@ -1,16 +1,15 @@
 import React from 'react'
 import GcsMap from '../gcs-map/gcs-map.component'
-import { Container } from 'rsuite';
-import TelemetryCard from '../telemetry-card/telemetry-card.component';
+import Stack from '../stack/stack.component';
+import Telemetry from '../telemetry/telemetry.component';
+import StackChild from '../stack-child/stack-child.component';
 
 const GcsCommandCenter = () => {
     return (
-        <Container>
-            <GcsMap />
-
-
-
-        </Container>
+        <Stack>
+            <StackChild Component={GcsMap} position='relative' />
+            <StackChild Component={Telemetry} right={15} top={15} />
+        </Stack>
     )
 }
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { gcsSidebarToggle } from '../../redux/gcs-sidebar/gcs-sidebar.actions';
 import FcPortMenu from '../fc-port-menu/fc-port-menu';
+import EnableRC from '../enable-rc/enable-rc.component';
 
 const GcsHeader = ({ gcsSidebarToggle }: any) => {
 
@@ -11,6 +12,9 @@ const GcsHeader = ({ gcsSidebarToggle }: any) => {
     <Header>
       <div style={{display: 'flex', alignItems: 'center', height: '56px'}}>
        <FcPortMenu />
+       <div style={{marginLeft: 'auto', marginRight: '0.5rem'}}>
+       <EnableRC />
+       </div>
       </div>
     </Header>
   );
