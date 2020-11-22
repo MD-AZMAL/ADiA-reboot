@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { InputPicker, Button } from 'rsuite';
+import { InputPicker, Button, Input } from 'rsuite';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -41,17 +41,21 @@ const FcPortMenu = ({connectFc,disconnectFc,subscribeToImu, setTelemetryEmpty, i
   }
 
   return (
-    <div style={{ padding: '.5rem' }}>
+    // <>
+    <div style={{ padding: '.5rem' , display: 'flex'}} >
+     <Input style={{width: '200px', marginRight: '.5rem'}} onChange={(val) => {val === null ? setSelectedPort("") : setSelectedPort(val)}} />
+     
       <InputPicker
         data={ports}
         style={{ width: '150px' }}
         disabled={isConnected}
-        onChange={(val) => {val === null ? setSelectedPort("") : setSelectedPort(val)}}
+        // onChange={(val) => {val === null ? setSelectedPort("") : setSelectedPort(val)}}
       />
       <Button style={{ marginLeft: '.5rem' }} color={isConnected ? "red" : "green"} onClick={fcConnectTrigger}>
         {isConnected ? 'Disconnect' : 'Connect'}
       </Button>
     </div>
+    // </>
   );
 };
 
