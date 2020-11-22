@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Grid, Row, Col, Panel } from 'rsuite';
 
-const TelemetryCard = ({icon, name, labelX, labelY, labelZ, valX, valY, valZ}: any) => {
+const TelemetryCard = ({icon, name, labelX, labelY, labelZ, labelZ1, valX, valY, valZ, valZ1}: any) => {
   return (
     <Panel bordered bodyFill style={{width: '200px', padding:'0.3rem', backgroundColor:'white'}}>
       <div style={{display: 'flex', alignItems: 'stretch', justifyContent:'flex-start', width: '200px'}}>
@@ -30,13 +30,13 @@ const TelemetryCard = ({icon, name, labelX, labelY, labelZ, valX, valY, valZ}: a
     <span>{valX}</span>
     <span>{valY}</span>
     <span>{valZ}</span>
-
+    {valZ1 ? <span>{valZ1}</span> : null}
   </div>
   <div style={{display: 'flex', alignItems:'center', justifyContent:'space-evenly', textAlign:'center'}}>
     <span>{labelX}</span>
     <span>{labelY}</span>
     <span>{labelZ}</span>
-
+    {labelZ1 ? <span>{labelZ1}</span> : null}
   </div>
 
 </div>
