@@ -18,6 +18,7 @@ const GcsMap = ({expanded, mapStyle}: any) => {
   return (
     <ReactMapGL
       {...viewport}
+      keyboard={false}
       maxZoom={20}
       width= {expanded ? `calc(100vw - 260px)` : `calc(100vw - 56px)` }
       height= 'calc(100vh - 56px)'
