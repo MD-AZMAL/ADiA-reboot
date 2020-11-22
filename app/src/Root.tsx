@@ -2,6 +2,7 @@ import React from 'react';
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
 import './app.global.scss';
+import './root.scss';
 
 import { testToggleValue } from './redux/test/test.actions';
 import GcsPage from './pages/gcs/gcs.page';
