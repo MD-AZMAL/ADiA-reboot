@@ -13,6 +13,7 @@ import {
   setAccelerometer,
   setGyroscope,
 } from '../../redux/telemertry/telemetry.actions';
+import RcCard from '../rc-card/rc-card.component';
 
 const Telemetry = ({
   FCP,
@@ -43,14 +44,54 @@ const Telemetry = ({
     };
   }, [isSubscribedToIMU]);
 
+  // const keyPressEvents = {
+  //   w: false,
+  //   a: false,
+  //   s: false,
+  //   d: false,
+  //   q: false,
+  //   e: false,
+  // }
+
+  // useEffect(() => {
+  //   document.addEventListener('keydown', (event) => {
+  //     switch(event.key.toLowerCase()) {
+  //       case 'w': keyPressEvents.w = true; break;
+  //       case 'a': keyPressEvents.a = true; break;
+  //       case 's': keyPressEvents.s = true; break;
+  //       case 'd': keyPressEvents.d = true; break;
+  //       case 'q': keyPressEvents.q = true; break;
+  //       case 'e': keyPressEvents.e = true; break;
+  //     }
+  //     console.log(`W: ${keyPressEvents.w} A: ${keyPressEvents.a} S: ${keyPressEvents.s} D: ${keyPressEvents.d} Q: ${keyPressEvents.q} E: ${keyPressEvents.e}`);
+
+  //   });
+
+  //   document.addEventListener('keyup', (event) => {
+  //     switch(event.key.toLowerCase()) {
+  //       case 'w': keyPressEvents.w = false; break;
+  //       case 'a': keyPressEvents.a = false; break;
+  //       case 's': keyPressEvents.s = false; break;
+  //       case 'd': keyPressEvents.d = false; break;
+  //       case 'q': keyPressEvents.q = false; break;
+  //       case 'e': keyPressEvents.e = false; break;
+  //     }
+  //     console.log(`W: ${keyPressEvents.w} A: ${keyPressEvents.a} S: ${keyPressEvents.s} D: ${keyPressEvents.d} Q: ${keyPressEvents.q} E: ${keyPressEvents.e}`);
+
+  //   });
+  // },[])
+
   return (
     // style={{ position: 'absolute', right: 15, top: 15 }}
     <div > 
       <div style={{marginBottom: '0.5rem'}}>
         <AccelorometerCard />
       </div>
-      <div>
+      <div style={{marginBottom: '0.5rem'}}>
         <GyroscopeCard />
+      </div>
+      <div>
+        <RcCard />
       </div>
     </div>
   );
