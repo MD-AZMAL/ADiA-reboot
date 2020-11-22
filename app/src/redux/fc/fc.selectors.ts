@@ -23,4 +23,17 @@ export const selectIsSubscribedToIMU = createSelector(
     fc => fc.isSubscribedToIMU
 );
 
+export const selectIsRcEnabled = createSelector(
+    [selectFc],
+    fc => fc.isRcEnabled
+);
 
+export const selectIsArmed = createSelector(
+    [selectFc],
+    fc => fc.isArmed
+);
+
+export const selectRc = createSelector(
+    [selectFc],
+    fc => fc.Rc
+);

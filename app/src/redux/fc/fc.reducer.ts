@@ -5,6 +5,15 @@ const INITIAL_STATE = {
     FCP: null,
     isConnected: false,
     isSubscribedToIMU: false,
+    isRcEnabled: false,
+    isArmed: false,
+    Rc: {
+        roll: 1500,
+        pitch: 1500,
+        yaw: 1500,
+        throttle: 1000,
+        arm: 1000
+    }
 };
 
 const fcReducer = (state=INITIAL_STATE, action: any) => {
@@ -39,6 +48,21 @@ const fcReducer = (state=INITIAL_STATE, action: any) => {
                 ...state,
                 isSubscribedToIMU: action.payload
             }
+        case fcActionTypes.SET_FC_IS_RC_ENABLED:
+            return {
+                ...state,
+                isRcEnabled: action.payload
+            };
+        case fcActionTypes.SET_FC_IS_ARMED:
+            return {
+                ...state,
+                isArmed: action.payload
+            };
+        case fcActionTypes.SET_FC_RC:
+            return {
+                ...state,
+                Rc: action.payload
+            };
         default:
             return state;
     }
