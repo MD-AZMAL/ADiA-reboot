@@ -63,6 +63,7 @@ export default merge(baseConfig, {
 
   module: {
     rules: [
+
       {
         test: /\.global\.css$/,
         use: [
@@ -179,6 +180,7 @@ export default merge(baseConfig, {
       // SVG Font
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        exclude:[path.resolve(__dirname,'../app/src/static/svg')],
         use: {
           loader: 'url-loader',
           options: {

@@ -21,6 +21,17 @@ export default {
           },
         },
       },
+      //svg-sprite-loader config (yarn add -D )
+      {
+        test: /\.svg$/,
+        use: [{
+          loader: 'svg-sprite-loader',
+          options: {
+            extract: false,
+            symbolId: 'icon-[name]'
+          }
+        }]
+      },
     ],
   },
 
