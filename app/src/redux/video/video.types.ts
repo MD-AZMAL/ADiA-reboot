@@ -1,0 +1,9 @@
+const videoActionTypes = {
+    SET_DEVICE_LIST: 'SET_DEVICE_LIST',
+    SET_DEVICE: 'SET_DEVICE',
+    SET_DEVICE_LIST_EMPTY: 'SET_DEVICE_LIST_EMPTY',
+    SET_DEVICE_EMPTY : 'SET_DEVICE_EMPTY',
+    SET_IS_STREAMING: 'SET_IS_STREAMING',
+};
+
+export default videoActionTypes;
