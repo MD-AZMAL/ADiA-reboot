@@ -45,12 +45,12 @@ const FcPortMenu = ({connectFc,disconnectFc,subscribeToImu, setTelemetryEmpty, i
     <div style={{ padding: '.5rem' , display: 'flex'}} >
      <Input style={{width: '200px', marginRight: '.5rem'}} onChange={(val) => {val === null ? setSelectedPort("") : setSelectedPort(val)}} />
      
-      <InputPicker
+      {/* <InputPicker
         data={ports}
         style={{ width: '150px' }}
         disabled={isConnected}
-        // onChange={(val) => {val === null ? setSelectedPort("") : setSelectedPort(val)}}
-      />
+        onChange={(val) => {val === null ? setSelectedPort("") : setSelectedPort(val)}}
+      /> */}
       <Button style={{ marginLeft: '.5rem' }} color={isConnected ? "red" : "green"} onClick={fcConnectTrigger}>
         {isConnected ? 'Disconnect' : 'Connect'}
       </Button>
