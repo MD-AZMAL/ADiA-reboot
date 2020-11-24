@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     devices: [],
     selectedDevice: null,
     isStreaming: false,
+    isVideoEnabled: false
 };
 
 const videoReducer = (state=INITIAL_STATE, action: any) => {
@@ -32,6 +33,11 @@ const videoReducer = (state=INITIAL_STATE, action: any) => {
             return {
                 ...state,
                 isStreaming: action.payload,
+            };
+        case videoActionTypes.SET_IS_VIDEO_ENABLED:
+            return {
+                ...state,
+                isVideoEnabled: action.payload,
             };
         default:
             return state;

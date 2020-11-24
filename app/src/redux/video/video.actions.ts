@@ -23,6 +23,11 @@ export const setVideoIsStreaming = (isStreaming: boolean) => ({
     payload: isStreaming
 }); 
 
+export const setIsVideoEnabled = (isVideoEnabled: boolean) => ({
+    type: videoActionTypes.SET_IS_VIDEO_ENABLED,
+    payload: isVideoEnabled
+});
+
 export const setSelectedVideoDeviceById = (deviceId: string, videoDevices: any) => {
     return (dispatch: any) => {
         const currentVideoDevice = videoDevices.find((device: any) => device.deviceId === deviceId);

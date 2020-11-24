@@ -4,6 +4,7 @@ const videoActionTypes = {
     SET_DEVICE_LIST_EMPTY: 'SET_DEVICE_LIST_EMPTY',
     SET_DEVICE_EMPTY : 'SET_DEVICE_EMPTY',
     SET_IS_STREAMING: 'SET_IS_STREAMING',
+    SET_IS_VIDEO_ENABLED: 'SET_IS_VIDEO_ENABLED'
 };
 
 export default videoActionTypes;

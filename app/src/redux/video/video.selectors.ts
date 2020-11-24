@@ -16,3 +16,8 @@ export const selectIsVideoStreaming = createSelector(
     [selectVideo],
     video => video.isStreaming
 );
+
+export const selectIsVideoEnabled = createSelector(
+    [selectVideo],
+    video => video.isVideoEnabled
+);
