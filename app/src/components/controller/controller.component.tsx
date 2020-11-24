@@ -168,7 +168,7 @@ const Controller = ({ isRcEnabled,sendRawRc }: any) => {
     <>
       <ControllerLeft
         style={{
-          opacity: isRcEnabled ? '100%' : '50%',
+          display: isRcEnabled ? 'block': 'none',
           position: 'absolute',
           bottom: 30,
         }}
@@ -179,7 +179,7 @@ const Controller = ({ isRcEnabled,sendRawRc }: any) => {
 
       <ControllerRight
         style={{
-          opacity: isRcEnabled ? '100%' : '50%',
+          display: isRcEnabled ? 'block': 'none',
           position: 'absolute',
           bottom: 30,
           right: 30,
