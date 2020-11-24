@@ -195,7 +195,7 @@ export const sendRawRc = (keyStatus: any) => {
         if(keyStatus.arm && !isArmedStatus) {
             RcValues.arm = 2000;
             RcValues.throttle = 1000;
-            dispatch(setFcIsArmed(true))
+            dispatch(setFcIsArmed(true));
         }
 
         if(keyStatus.disarm && isArmedStatus) {
@@ -205,12 +205,9 @@ export const sendRawRc = (keyStatus: any) => {
             dispatch(setFcIsArmed(false));
         }
         // dispatch(setFcRc({...RcValues}));
-        console.log(keyStatus);
-        console.log(`FC pointer ${FC}`);
         if(FC != null) {
             try {
                 sendRcStatus = flightLib.sendRawRC(FC,RcValues.roll,RcValues.pitch,RcValues.yaw,RcValues.throttle,RcValues.arm);
-                console.log(`SendRawRc status ${sendRcStatus}`)
                 if(sendRcStatus) {
                     // if(RcValues.arm === 2000) {
                     //     dispatch(setFcIsArmed(true));
