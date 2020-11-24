@@ -30,7 +30,7 @@ const MapStyleDropdown = ({setMapStyle, ...props}: any) => {
             onMapSelect(url, id);
           }}
         >
-          {title}
+          {title} 
         </Dropdown.Item>
       ))}
     </Dropdown>
