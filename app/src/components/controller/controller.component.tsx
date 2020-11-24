@@ -43,6 +43,7 @@ const Controller = ({ isRcEnabled,sendRawRc }: any) => {
   };
 
   const keyDownCallback = (event: any) => {
+
     switch (event.key.toLowerCase()) {
       case keyMapping.YAW_LEFT:
         keyStatus.yawLeft = true;
@@ -75,6 +76,7 @@ const Controller = ({ isRcEnabled,sendRawRc }: any) => {
         keyStatus.disarm = true;
         break;
     }
+    console.log({ ...keyStatus });
     setKeyState({ ...keyStatus });
   };
 
@@ -129,14 +131,13 @@ const Controller = ({ isRcEnabled,sendRawRc }: any) => {
   useEffect(() => {
 
     const sendRawRcCallback = () => {
-      console.log(`Started`);
       sendRawRc(keyStatus);
     }
     
     if (isRcEnabled) {
       document.addEventListener('keydown', mouseDownCallback);
       document.addEventListener('keyup', mouseUpCallback);
-      setSendRcInterval(setInterval(sendRawRcCallback,100))
+      setSendRcInterval(setInterval(sendRawRcCallback,100));
     } else {
       keyStatus = {
         yawLeft: false,
