@@ -21,7 +21,7 @@ const GcsSidebar = ({expanded, gcsSidebarToggle} : any) => {
                 User Group
               </Nav.Item>
               <MapStyleDropdown eventKey="3" />
-              <Nav.Item eventKey="5" icon={<Icon icon="group" />} onClick={gcsSidebarToggle}>
+              <Nav.Item eventKey="5" icon={<Icon icon="close-circle" />} onClick={gcsSidebarToggle}>
                 Close
               </Nav.Item>
           </Nav>
