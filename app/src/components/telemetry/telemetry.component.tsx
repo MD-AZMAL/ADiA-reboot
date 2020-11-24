@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import AccelorometerCard from '../accelerometer-card/accelerometer-card.component';
 import GyroscopeCard from '../gyroscope-card/gyroscope-card.component';
 
+
 import {
   selectFCP,
   selectIsSubscribedToIMU,
@@ -14,6 +15,7 @@ import {
   setGyroscope,
 } from '../../redux/telemertry/telemetry.actions';
 import RcCard from '../rc-card/rc-card.component';
+import Compass from '../compass/compass.component';
 
 const Telemetry = ({
   FCP,
@@ -83,16 +85,20 @@ const Telemetry = ({
 
   return (
     // style={{ position: 'absolute', right: 15, top: 15 }}
-    <div > 
-      <div style={{marginBottom: '0.5rem'}}>
+    <div>
+      <div style={{ marginBottom: '0.5rem' }}>
         <AccelorometerCard />
       </div>
-      <div style={{marginBottom: '0.5rem'}}>
+      <div style={{ marginBottom: '0.5rem' }}>
         <GyroscopeCard />
       </div>
-      <div>
+      <div style={{ marginBottom: '0.5rem' }}>
         <RcCard />
       </div>
+      <div>
+        <Compass />
+      </div>
+      
     </div>
   );
 };
