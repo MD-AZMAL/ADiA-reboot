@@ -3,8 +3,14 @@ import { Panel, Icon } from 'rsuite';
 
 import compassNeedle from '../../static/svg/compass-needle-2.svg';
 import compassOuter from '../../static/svg/compass-outer.svg';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectAccel } from '../../redux/telemertry/telemetry.selectors';
 
-const Compass = () => {
+const Compass = ({accel}: any) => {
+  console.log(accel.y);
+  console.log(typeof(accel.y));
+
     return (
         <Panel bordered bodyFill style={{width: '120px', backgroundColor:'white', marginLeft: 'auto'}}>
         <div
@@ -23,7 +29,7 @@ const Compass = () => {
               position: 'absolute',
               top: '50%',
               left: '50%',
-              transform: 'translate(-50%,-50%) rotate(23deg)',
+              transform: `translate(-50%,-50%) rotate(${accel.Y}deg)`,
             }}
           />
           <Icon
@@ -45,11 +51,13 @@ const Compass = () => {
               whiteSpace: 'nowrap',
             }}
           >
-            23 &deg;
+            {accel.Y} &deg;
           </p>
         </div>
       </Panel>
     )
 }
-
-export default Compass;
+const mapStateToProps = createStructuredSelector({
+  accel :selectAccel
+});
+export default connect(mapStateToProps)(Compass);

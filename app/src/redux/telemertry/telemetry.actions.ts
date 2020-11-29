@@ -15,6 +15,7 @@ export const setTelemetryEmpty = () => ({
     type: telemetryActionTypes.SET_TELEMETRY_EMPTY
 });
 
+
 export const setAccelerometer = (FCP: any) => {
     return (dispatch: any) => {
         let X,Y,Z;

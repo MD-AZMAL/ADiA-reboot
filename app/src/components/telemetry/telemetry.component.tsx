@@ -36,7 +36,7 @@ const Telemetry = ({
     };
 
     if (isSubscribedToIMU) {
-      setTelemetryInterval(setInterval(getIMU, 500));
+      setTelemetryInterval(setInterval(getIMU, 100));
     } else {
       clearInterval(telemetryInterval);
     }

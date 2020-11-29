@@ -9,14 +9,16 @@ const RcCard = ({ Rc }: any) => {
     <TelemetryCard
       icon="dot-circle-o"
       name="RC"
-      labelX="rl"
-      labelY="pt"
-      labelZ="yw"
-      labelZ1="tr"
+      labelX="roll"
+      labelY="pitch"
+      labelZ="yaw"
+      labelZ1="thrt."
+      labelZ2="arm"
       valX={Rc.roll}
       valY={Rc.pitch}
       valZ={Rc.yaw}
       valZ1={Rc.throttle}
+      valZ2={Rc.arm}
     />
   );
 };
