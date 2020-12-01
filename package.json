@@ -277,8 +277,8 @@
     "@hot-loader/react-dom": "^16.13.0",
     "@reduxjs/toolkit": "^1.4.0",
     "@turf/difference": "^6.0.2",
+    "@turf/turf": "^5.1.6",
     "@types/react-map-gl": "^5.2.9",
-    "@types/turf": "^3.5.32",
     "connected-react-router": "^6.6.1",
     "electron-debug": "^3.1.0",
     "electron-log": "^4.2.4",
@@ -297,8 +297,7 @@
     "regenerator-runtime": "^0.13.5",
     "reselect": "^4.0.0",
     "rsuite": "^4.8.4",
-    "source-map-support": "^0.5.19",
-    "turf": "^3.0.14"
+    "source-map-support": "^0.5.19"
   },
   "resolutions": {
     "@turf/difference": "6.0.1"

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Editor, DrawPolygonMode, EditingMode } from 'react-map-gl-draw';
 import { connect } from 'react-redux';
-import turf from 'turf';
+import pointsWithinPolygon from '@turf/points-within-polygon';
+import bbox from '@turf/bbox';
+import pointGrid from '@turf/point-grid';
 
 import {
   setWayPointPointCloud,
@@ -53,7 +55,7 @@ const GcsMapEditor = ({
       // console.log('up------up');
       // console.log(editorRef.getFeatures());
       // console.log('up-----up');
-      let boundingBoxFromPolygon = turf.bbox(editorRef.getFeatures()[0]);
+      let boundingBoxFromPolygon = bbox(editorRef.getFeatures()[0]);
       // console.log(test);
       // console.log(editorRef);
       // let testPoly = turf.bboxPolygon(test);
@@ -62,12 +64,19 @@ const GcsMapEditor = ({
       // console.log(editorRef.getFeatures());
       // console.log('aaa---------aaaa');
 
-      let pointCloudFromBoundingBox = turf.pointGrid(
-        boundingBoxFromPolygon,
-        10,
-        'meters'
+      let pointCloudFromBoundingBox = pointGrid(boundingBoxFromPolygon, 10,{units: 'meters'});
+
+      console.log('point cloud');
+      console.log(pointCloudFromBoundingBox);
+      console.log('polygon');
+      console.log(editorRef.getFeatures()[0]);
+
+      let pointsInPolygon = pointsWithinPolygon(
+        pointCloudFromBoundingBox,
+        editorRef.getFeatures()[0]
       );
-      setWayPointPointCloud(pointCloudFromBoundingBox);
+
+      setWayPointPointCloud(pointsInPolygon);
 
       // console.log(editorRef.getFeatures());
     }
