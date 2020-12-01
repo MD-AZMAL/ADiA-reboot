@@ -1,8 +1,13 @@
 import { createSelector } from 'reselect';
 
-const selectWayPoint = (state: any) => state.video;
+const selectWayPoint = (state: any) => state.wayPoint;
 
-export const selectWayPointMode = createSelector(
+export const selectWayPointBoundingBox = createSelector(
     [selectWayPoint],
-    wayPoint => wayPoint.mode
+    wayPoint => wayPoint.boundingBox
+);
+
+export const selectWayPointPointCloud = createSelector(
+    [selectWayPoint],
+    wayPoint => wayPoint.pointCloud
 );

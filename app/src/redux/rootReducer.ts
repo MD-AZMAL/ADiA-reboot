@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     telemetry: telemetryReducer,
     fc: fcReducer,
     video: videoReducer,
-    waypoint: wayPointReducer
+    wayPoint: wayPointReducer
 });
 
 export default rootReducer;
