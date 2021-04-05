@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 
 const selectWayPoint = (state: any) => state.wayPoint;
 
-export const selectWayPointBoundingBox = createSelector(
+export const selectWayPointPolygon = createSelector(
     [selectWayPoint],
-    wayPoint => wayPoint.boundingBox
+    wayPoint => wayPoint.polygon
 );
 
 export const selectWayPointPointCloud = createSelector(

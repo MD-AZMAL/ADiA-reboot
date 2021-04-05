@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Editor, DrawPolygonMode, EditingMode } from 'react-map-gl-draw';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import pointsWithinPolygon from '@turf/points-within-polygon';
 import bbox from '@turf/bbox';
 import pointGrid from '@turf/point-grid';
 
 import {
+  setWayPointPolygon,
+  setWayPointPolygonNull,
   setWayPointPointCloud,
   setWayPointPointCloudNull,
+  writeToFile,
+  loadFromFile
 } from '../../redux/waypoint/waypoint.actions';
+
+import { selectWayPointPointCloud, selectWayPointPolygon } from '../../redux/waypoint/waypoint.selectors';
+
 import GcsMapEditorControls from '../gcs-map-editor-controls/gcs-map-editor-controls.component';
 
 import { getFeatureStyle, getEditHandleStyle } from './gcs-map-editor.styles';
@@ -16,10 +24,26 @@ import { getFeatureStyle, getEditHandleStyle } from './gcs-map-editor.styles';
 const GcsMapEditor = ({
   setWayPointPointCloud,
   setWayPointPointCloudNull,
+  setWayPointPolygonNull,
+  polygon,
+  loadFromFile,
+  pointCloud,
+  writeToFile
 }: any) => {
   const [selectedFeatureIndex, setSelectedFeatureIndex] = useState(null);
   const [mode, setMode] = useState<any>(null);
   let editorRef: any = null;
+
+  useEffect(()=> {
+    console.log('here in useefffedt')
+    if(editorRef.getFeatures().length !== 0) {
+      editorRef.deleteFeatures(0);
+    }
+    
+    editorRef.addFeatures(polygon);
+
+    console.log(editorRef.getFeatures())
+  },[pointCloud])
 
   const onDraw = () => {
     if (editorRef.getFeatures().length === 0) {
@@ -31,7 +55,9 @@ const GcsMapEditor = ({
     // console.log(options);
     // console.log('---------mode-----');
     // console.log(mode);
+    console.log(options);
     setSelectedFeatureIndex(options && options.selectedFeatureIndex);
+    
   };
 
   const onUpdate = (options: any) => {
@@ -42,11 +68,12 @@ const GcsMapEditor = ({
   };
 
   const onDelete = () => {
-    const selectedIndex = selectedFeatureIndex;
-    if (selectedIndex !== null && selectedIndex >= 0) {
-      editorRef.deleteFeatures(selectedIndex);
+    // const selectedIndex = selectedFeatureIndex;
+    // if (selectedIndex !== null && selectedIndex >= 0) {
+      editorRef.deleteFeatures(0);
       setWayPointPointCloudNull();
-    }
+      setWayPointPolygonNull();
+    // }
   };
 
   const onMakePointCloud = () => {
@@ -83,7 +110,16 @@ const GcsMapEditor = ({
   };
 
   const onExecuteMission = () => {
-    console.log(editorRef.getFeatures());
+    writeToFile(pointCloud,'pointCloud.txt');
+    if(editorRef.getFeatures().length !== 0) {
+      let polygonData = editorRef.getFeatures()[0]
+      writeToFile(polygonData,'polygon.txt');
+    }
+  };
+
+  const onLoadFromFile = async () => {
+    loadFromFile('polygon.txt','polygon');
+    loadFromFile('pointCloud.txt','pointCloud'); 
   };
 
   return (
@@ -104,15 +140,25 @@ const GcsMapEditor = ({
         onClickButton2={onDelete}
         onClickButton3={onMakePointCloud}
         onClickButton4={onExecuteMission}
+        onClickButton5={onLoadFromFile}
       />
     </div>
   );
 };
 
+const mapStateToProps = createStructuredSelector({
+  pointCloud: selectWayPointPointCloud,
+  polygon: selectWayPointPolygon,
+});
+
 const mapDispatchToProps = (dispatch: any) => ({
+  setWayPointPolygon: (polygon: any) => dispatch(setWayPointPolygon(polygon)),
   setWayPointPointCloud: (pointCloud: any) =>
     dispatch(setWayPointPointCloud(pointCloud)),
   setWayPointPointCloudNull: () => dispatch(setWayPointPointCloudNull()),
+  setWayPointPolygonNull: () => dispatch(setWayPointPolygonNull()),
+  writeToFile: (polygon: any, fileName: string) => dispatch(writeToFile(polygon,fileName)),
+  loadFromFile: (fileName: string, type: string) => dispatch(loadFromFile(fileName,type)),
 });
 
-export default connect(null, mapDispatchToProps)(GcsMapEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(GcsMapEditor);
